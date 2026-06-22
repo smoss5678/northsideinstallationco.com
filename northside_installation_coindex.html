@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Northside Installation Co. | St. Clair County, MI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@300;400;500;600&family=Oswald:wght@500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink:      #1A1C18;
+      --iron:     #22261E;
+      --slate:    #3D4A35;
+      --mist:     #7D8C72;
+      --chalk:    #EAE8E0;
+      --white:    #F5F3EC;
+      --moss:     #5A7A3A;
+      --moss-lt:  #76A04E;
+      --rule:     rgba(90,122,58,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', sans-serif; background: var(--ink); color: var(--chalk); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 3rem;
+      background: rgba(26,28,24,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo { height: 52px; width: auto; filter: invert(1) brightness(2); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--chalk); }
+    .nav-btn { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); background: var(--moss); padding: 0.6rem 1.5rem; text-decoration: none; transition: background 0.2s; }
+    .nav-btn:hover { background: var(--moss-lt); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 4.5rem; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem 5rem 3rem; border-right: 1px solid var(--rule); }
+    .hero-right { display: flex; flex-direction: column; justify-content: flex-end; padding: 4rem 3rem 4rem 4rem; background: var(--iron); position: relative; overflow: hidden; }
+    .hero-right::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(180deg, transparent, transparent 3px, rgba(90,122,58,0.03) 3px, rgba(90,122,58,0.03) 4px); pointer-events: none; }
+    .hero-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
+    .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--moss); }
+    .hero-tag::after { content: ''; display: block; width: 2rem; height: 1px; background: var(--moss); }
+    .hero-h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5.5vw, 5rem); line-height: 1.1; color: var(--white); margin-bottom: 2rem; }
+    .hero-h1 em { font-style: italic; color: var(--moss); }
+    .hero-body { font-size: 0.98rem; font-weight: 300; color: var(--mist); line-height: 1.85; max-width: 400px; margin-bottom: 3rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-solid { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); background: var(--moss); padding: 0.85rem 2rem; text-decoration: none; transition: background 0.2s; display: inline-block; }
+    .btn-solid:hover { background: var(--moss-lt); }
+    .btn-outline { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chalk); border: 1px solid rgba(240,237,232,0.2); padding: 0.85rem 2rem; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--moss); color: var(--moss); }
+    .hero-panel-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); margin-bottom: 1.8rem; position: relative; z-index: 1; }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--rule); border: 1px solid var(--rule); position: relative; z-index: 1; }
+    .hero-stat { background: var(--iron); padding: 1.8rem 1.5rem; }
+    .hero-stat-n { font-family: 'Oswald', sans-serif; font-size: 2.6rem; font-weight: 600; color: var(--white); line-height: 1; margin-bottom: 0.35rem; }
+    .hero-stat-n span { color: var(--moss); }
+    .hero-stat-l { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); }
+    .hero-divider { width: 100%; height: 1px; background: var(--rule); margin: 2rem 0; position: relative; z-index: 1; }
+    .hero-cert { font-size: 0.8rem; color: var(--mist); font-weight: 300; position: relative; z-index: 1; line-height: 1.7; }
+    .hero-cert strong { color: var(--chalk); font-weight: 500; }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--iron); padding: 0.9rem 0; }
+    .marquee-track { display: flex; align-items: center; gap: 0; animation: scroll 35s linear infinite; white-space: nowrap; }
+    .marquee-item { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mist); flex-shrink: 0; padding: 0 0.8rem; display: inline-flex; align-items: center; }
+    .marquee-sep { display: inline-block; width: 4px; height: 4px; background: var(--moss); border-radius: 50%; margin: 0 0.8rem; flex-shrink: 0; vertical-align: middle; position: relative; top: -1px; font-size: 0; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTIONS */
+    section { padding: 6rem 3rem; }
+    .inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--moss); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+    .eyebrow::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--moss); }
+    .section-h { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
+    .section-body { font-size: 0.94rem; font-weight: 300; color: var(--mist); line-height: 1.85; max-width: 520px; }
+
+    /* SERVICES */
+    #services { background: var(--ink); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 2rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--rule); border: 1px solid var(--rule); }
+    .svc { background: var(--ink); padding: 2.5rem 2rem; transition: background 0.25s; position: relative; }
+    .svc:hover { background: var(--iron); }
+    .svc-num { font-family: 'Oswald', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.15em; color: var(--moss); margin-bottom: 1.5rem; display: block; }
+    .svc-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--white); margin-bottom: 0.8rem; line-height: 1.2; }
+    .svc-desc { font-size: 0.86rem; font-weight: 300; color: var(--mist); line-height: 1.8; }
+    .svc-arrow { position: absolute; bottom: 2rem; right: 2rem; color: var(--moss); font-size: 1.1rem; opacity: 0; transition: opacity 0.2s; }
+    .svc:hover .svc-arrow { opacity: 1; }
+    .svc-afs { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; background: var(--moss); color: var(--ink); padding: 0.2rem 0.6rem; margin-bottom: 0.8rem; }
+
+    /* WHO WE SERVE */
+    #serve { background: var(--iron); }
+    .serve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+    .serve-card { border-top: 2px solid var(--moss); padding-top: 2rem; }
+    .serve-for { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); margin-bottom: 0.9rem; }
+    .serve-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); line-height: 1.2; margin-bottom: 0.9rem; }
+    .serve-desc { font-size: 0.86rem; font-weight: 300; color: var(--mist); line-height: 1.8; margin-bottom: 1.5rem; }
+    .serve-list { list-style: none; }
+    .serve-list li { font-size: 0.82rem; color: var(--chalk); padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 0.6rem; }
+    .serve-list li::before { content: ''; display: block; width: 4px; height: 4px; background: var(--moss); border-radius: 50%; flex-shrink: 0; }
+
+    /* ABOUT */
+    #about { background: var(--ink); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-right { border: 1px solid var(--rule); padding: 3rem; }
+    .about-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--white); line-height: 1.55; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+    .about-facts { display: flex; flex-direction: column; gap: 1.1rem; }
+    .about-fact { display: flex; gap: 1rem; align-items: flex-start; }
+    .fact-dot { width: 5px; height: 5px; background: var(--moss); border-radius: 50%; margin-top: 0.6rem; flex-shrink: 0; }
+    .fact-text { font-size: 0.86rem; color: var(--chalk); font-weight: 400; line-height: 1.65; }
+
+    /* AREA */
+    #area { background: var(--iron); }
+    .area-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+    .county-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--rule); border: 1px solid var(--rule); margin-top: 3.5rem; }
+    .county { background: var(--iron); padding: 1.2rem 1.5rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; color: var(--mist); transition: background 0.2s, color 0.2s; }
+    .county.primary { background: var(--moss); color: var(--ink); font-weight: 700; }
+    .county:not(.primary):hover { background: rgba(90,122,58,0.1); color: var(--chalk); }
+
+    /* CONTACT */
+    #contact { background: var(--ink); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+    .contact-methods { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+    .method { padding: 1.4rem 1.5rem; border: 1px solid var(--rule); transition: border-color 0.2s; }
+    .method:hover { border-color: var(--moss); }
+    .method-l { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--moss); margin-bottom: 0.3rem; }
+    .method-v { font-size: 0.98rem; color: var(--white); }
+    .form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .f-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .f-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mist); }
+    .f-input, .f-select, .f-textarea { background: var(--iron); border: 1px solid rgba(255,255,255,0.07); color: var(--chalk); font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem; font-weight: 300; padding: 0.8rem 1rem; outline: none; width: 100%; transition: border-color 0.2s; -webkit-appearance: none; }
+    .f-input:focus, .f-select:focus, .f-textarea:focus { border-color: var(--moss); }
+    .f-textarea { resize: vertical; min-height: 130px; }
+    .f-select option { background: var(--iron); }
+    .f-submit { background: var(--moss); color: var(--ink); border: none; cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 1rem 2rem; width: 100%; transition: background 0.2s; margin-top: 0.4rem; }
+    .f-submit:hover { background: var(--moss-lt); }
+
+    /* FOOTER */
+    footer { background: #111410; border-top: 1px solid var(--rule); padding: 2.2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem; }
+    .footer-logo { height: 44px; width: auto; filter: invert(1) brightness(2); opacity: 0.85; }
+    .footer-copy { font-size: 0.72rem; color: var(--mist); }
+    .footer-tagline { font-size: 0.68rem; color: var(--mist); font-style: italic; margin-top: 0.3rem; }
+    .footer-nav { display: flex; gap: 2rem; }
+    .footer-nav a { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--moss); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 6rem 1.5rem 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .services-grid, .serve-grid { grid-template-columns: 1fr; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .area-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEBLAEsAAD/4gvgSUNDX1BST0ZJTEUAAQEAAAvQAAAAAAIAAABtbnRyUkdCIFhZWiAH3wACAA8AAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA9tYAAQAAAADTLQAAAA..." alt="Northside Installation Co." class="nav-logo"/>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#serve">Who We Serve</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#area">Service Area</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Appliance Installation — St. Clair County, MI</div>
+    <h1 class="hero-h1">The work is<br><em>done right.</em><br>And we stand<br>behind it.</h1>
+    <p class="hero-body">Appliance installation, site preparation, and home modification work handled by a specialist with 14 years in the trade. We get it done, and when something comes up, we come back.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-solid">Request a Quote</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-panel-label">By the numbers</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">14<span>+</span></div>
+        <div class="hero-stat-l">Years Experience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">5,000<span>+</span></div>
+        <div class="hero-stat-l">Jobs Completed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">3</div>
+        <div class="hero-stat-l">Client Types Served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">8<span>+</span></div>
+        <div class="hero-stat-l">Counties Covered</div>
+      </div>
+    </div>
+    <div class="hero-divider"></div>
+    <p class="hero-cert"><strong>Authorized Factory Serviceman for Sub-Zero and Wolf.</strong> Fully insured. 14 years of hands-on experience across all major brands, commercial and designer.</p>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Sub-Zero</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Wolf</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Miele</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Thermador</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Bosch</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Fisher &amp; Paykel</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Viking</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Dacor</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Monogram</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Samsung</span><span class="marquee-sep"></span>
+    <span class="marquee-item">LG</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Whirlpool</span><span class="marquee-sep"></span>
+    <span class="marquee-item">KitchenAid</span><span class="marquee-sep"></span>
+    <span class="marquee-item">GE Profile</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Electrolux</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Sub-Zero</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Wolf</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Miele</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Thermador</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Bosch</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Fisher &amp; Paykel</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Viking</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Dacor</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Monogram</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Samsung</span><span class="marquee-sep"></span>
+    <span class="marquee-item">LG</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Whirlpool</span><span class="marquee-sep"></span>
+    <span class="marquee-item">KitchenAid</span><span class="marquee-sep"></span>
+    <span class="marquee-item">GE Profile</span><span class="marquee-sep"></span>
+    <span class="marquee-item">Electrolux</span><span class="marquee-sep"></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="inner">
+    <div class="services-header">
+      <div>
+        <div class="eyebrow reveal">What We Do</div>
+        <h2 class="section-h reveal">Every service.<br>One specialist.</h2>
+      </div>
+      <p class="section-body reveal">We handle the full scope from the appliance itself to the utility and site work that makes it function properly. One contractor, fewer headaches.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal">
+        <span class="svc-num">01</span>
+        <div class="svc-title">Appliance Installation</div>
+        <p class="svc-desc">All major appliances installed correctly. Refrigerators, ranges, dishwashers, wall ovens, washers, dryers, and everything in between. Every brand, every model.</p>
+        <span class="svc-arrow">></span>
+      </div>
+      <div class="svc reveal">
+        <span class="svc-num">02</span>
+        <span class="svc-afs">AFS Certified</span>
+        <div class="svc-title">Sub-Zero and Wolf Specialist</div>
+        <p class="svc-desc">As an Authorized Factory Serviceman for Sub-Zero and Wolf, this is where the bulk of our high-end work lives. We know these brands inside and out, from installation specs to service requirements.</p>
+        <span class="svc-arrow">></span>
+      </div>
+      <div class="svc reveal">
+        <span class="svc-num">03</span>
+        <div class="svc-title">Utility and Site Preparation</div>
+        <p class="svc-desc">Gas connections, electrical upgrades, plumbing hookups, venting, cabinetry adjustments, custom cutouts, and structural prep. Everything the job needs before and after the appliance goes in.</p>
+        <span class="svc-arrow">></span>
+      </div>
+      <div class="svc reveal">
+        <span class="svc-num">04</span>
+        <div class="svc-title">New Construction</div>
+        <p class="svc-desc">Subcontractor service from rough-in to final install. We show up on schedule, work clean, and coordinate with your timeline without creating problems for the rest of your crew.</p>
+        <span class="svc-arrow">></span>
+      </div>
+      <div class="svc reveal">
+        <span class="svc-num">05</span>
+        <div class="svc-title">Appliance Replacement</div>
+        <p class="svc-desc">Old unit removal, disposal, and new installation handled in one visit. We coordinate around delivery schedules and handle the site work so you are not juggling multiple contractors.</p>
+        <span class="svc-arrow">></span>
+      </div>
+      <div class="svc reveal">
+        <span class="svc-num">06</span>
+        <div class="svc-title">14 Years. 5,000 Jobs.</div>
+        <p class="svc-desc">From high-volume retail installs for Lowe's, Home Depot, Sears, Hawthorne Appliance, ABC Warehouse, and Sergeant Appliance to custom work in some of the most exclusive homes in Southeast Michigan. That range is what makes the difference.</p>
+        <span class="svc-arrow">></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section id="serve">
+  <div class="inner">
+    <div class="eyebrow reveal">Who We Work With</div>
+    <h2 class="section-h reveal">We work well with<br>three types of clients.</h2>
+    <div class="serve-grid">
+      <div class="serve-card reveal">
+        <div class="serve-for">Interior Designers</div>
+        <div class="serve-title">We understand what's at stake on your jobs.</div>
+        <p class="serve-desc">Luxury appliances have tight tolerances and specific requirements. We have worked with these brands long enough to know what can go wrong and how to keep it from happening.</p>
+        <ul class="serve-list">
+          <li>AFS certified for Sub-Zero and Wolf</li>
+          <li>Miele, Thermador, Viking, Dacor and all luxury brands</li>
+          <li>Careful handling of finished surfaces and cabinetry</li>
+          <li>Professional conduct on your client's property</li>
+        </ul>
+      </div>
+      <div class="serve-card reveal">
+        <div class="serve-for">Builders and Contractors</div>
+        <div class="serve-title">We fit into your schedule, not the other way around.</div>
+        <p class="serve-desc">We have worked as a subcontractor long enough to know what builders actually need. Someone who shows up, communicates, and does not create extra work for the rest of the crew.</p>
+        <ul class="serve-list">
+          <li>New construction and full renovation experience</li>
+          <li>Rough-in through finish-out coordination</li>
+          <li>We keep our part of the job moving on your timeline</li>
+          <li>Most of Southeast Michigan covered</li>
+        </ul>
+      </div>
+      <div class="serve-card reveal">
+        <div class="serve-for">Homeowners</div>
+        <div class="serve-title">Straightforward work from someone who knows it.</div>
+        <p class="serve-desc">We do the job properly, explain what we are doing, and if something comes up during or after we deal with it. No surprises in the bill, no disappearing act when there is a question.</p>
+        <ul class="serve-list">
+          <li>All brands and models, including high-end appliances</li>
+          <li>Old appliance removal and disposal available</li>
+          <li>Utility hookups handled as part of the job</li>
+          <li>Local, insured, and easy to reach when you need us</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="eyebrow">About Northside</div>
+        <h2 class="section-h">14 years in the trade.<br>Built into a specialty.</h2>
+        <p class="section-body" style="margin-bottom:1.4rem;">Steve Moss started out doing general trade work across plumbing, electrical, and carpentry. Over time the work narrowed. Kitchens and bathrooms became the focus, and appliance and fixture installation became the specialty.</p>
+        <p class="section-body" style="margin-bottom:1.4rem;">Along the way that included high-volume installation work for Lowe's, Home Depot, Sears, Hawthorne Appliance, ABC Warehouse, and Sergeant Appliance. That kind of volume builds consistency and real problem-solving experience. The same expertise has also been trusted in some of the most exclusive homes in Southeast Michigan.</p>
+        <p class="section-body">Steve is also an Authorized Factory Serviceman for Sub-Zero and Wolf, which is one of the harder credentials to hold in this trade. Northside Installation Co. is not a franchise or a dispatch crew. It is one person who has done this long enough to handle whatever a job throws at him.</p>
+      </div>
+      <div class="about-right reveal">
+        <p class="about-quote">"I started doing general trade work. I became a specialist. There is a real difference between the two, and after 14 years the clients can feel it."</p>
+        <div class="about-facts">
+          <div class="about-fact"><div class="fact-dot"></div><div class="fact-text">Authorized Factory Serviceman for Sub-Zero and Wolf</div></div>
+          <div class="about-fact"><div class="fact-dot"></div><div class="fact-text">14 years of hands-on trade experience in Southeast Michigan</div></div>
+          <div class="about-fact"><div class="fact-dot"></div><div class="fact-text">Installation work for Lowe's, Home Depot, Sears, Hawthorne Appliance, ABC Warehouse, and Sergeant Appliance</div></div>
+          <div class="about-fact"><div class="fact-dot"></div><div class="fact-text">Trusted in some of the most exclusive homes in the region</div></div>
+          <div class="about-fact"><div class="fact-dot"></div><div class="fact-text">Kitchen and bathroom specialist covering appliances, fixtures, and all supporting work</div></div>
+          <div class="about-fact"><div class="fact-dot"></div><div class="fact-text">Fully insured on every job</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section id="area">
+  <div class="inner">
+    <div class="area-inner">
+      <div class="reveal">
+        <div class="eyebrow">Where We Work</div>
+        <h2 class="section-h">Most of Southeast Michigan.</h2>
+        <p class="section-body">Based in St. Clair County, we cover most of Southeast Michigan. Not sure if we reach your area, just ask and we will give you a straight answer.</p>
+      </div>
+      <div class="county-grid reveal">
+        <div class="county primary">St. Clair County — Home Base</div>
+        <div class="county">Macomb County</div>
+        <div class="county">Oakland County</div>
+        <div class="county">Wayne County</div>
+        <div class="county">Lapeer County</div>
+        <div class="county">Sanilac County</div>
+        <div class="county">Genesee County</div>
+        <div class="county">Livingston County</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">Get in Touch</div>
+        <h2 class="section-h">Tell us about<br>your project.</h2>
+        <p class="section-body">Give us the details and we will get back to you within one business day with a straight answer on scope, timeline, and cost.</p>
+        <div class="contact-methods">
+          <div class="method">
+            <div class="method-l">Phone</div>
+            <div class="method-v">(810) 882-9216</div>
+          </div>
+          <div class="method">
+            <div class="method-l">Email</div>
+            <div class="method-v">steve@northsideinstallationco.com</div>
+          </div>
+          <div class="method">
+            <div class="method-l">Service Area</div>
+            <div class="method-v">Most of Southeast Michigan</div>
+          </div>
+        </div>
+      </div>
+      <div class="form reveal">
+        <div class="form-row">
+          <div class="f-group"><label class="f-label">First Name</label><input type="text" class="f-input" placeholder="John"/></div>
+          <div class="f-group"><label class="f-label">Last Name</label><input type="text" class="f-input" placeholder="Smith"/></div>
+        </div>
+        <div class="f-group"><label class="f-label">Email</label><input type="email" class="f-input" placeholder="john@example.com"/></div>
+        <div class="f-group"><label class="f-label">Phone</label><input type="tel" class="f-input" placeholder="(810) 882-9216"/></div>
+        <div class="f-group">
+          <label class="f-label">I Am A...</label>
+          <select class="f-select">
+            <option value="">Select one</option>
+            <option>Homeowner</option>
+            <option>Interior Designer</option>
+            <option>Builder / Contractor</option>
+            <option>Property Manager</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="f-group"><label class="f-label">Tell Us About Your Project</label><textarea class="f-textarea" placeholder="Appliance type, brand, any utility or site work needed, your location, and timeline..."></textarea></div>
+        <button class="f-submit" onclick="alert('Thank you. We will be in touch within one business day.')">Send Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="Northside_Installation_Logo.jpg" alt="Northside Installation Co." class="footer-logo"/>
+    <p class="footer-tagline">Like moss on a north facing tree, we started small, put down roots, and just kept growing. Also we install appliances.</p>
+  </div>
+  <p class="footer-copy">2026 Northside Installation Co. St. Clair County, MI. All rights reserved.</p>
+  <nav class="footer-nav">
+    <a href="#services">Services</a>
+    <a href="#serve">Who We Serve</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
